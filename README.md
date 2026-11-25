@@ -90,3 +90,13 @@ Comandos do dia a dia:
 ## Painel de custo
 
 Rode `node src/painel.js` (ou o serviço acima) e abra http://localhost:8788. Mostra gasto de hoje, do mês e do total, tokens de entrada e saída, e o detalhe por modelo e por dia. O valor em reais aparece quando você preenche PRECO_ENTRADA e PRECO_SAIDA no .env com o preço por 1 milhão de tokens da sua conta. Sem isso, ele conta tokens e deixa o custo em zero.
+
+## WhatsApp em um comando (Evolution API inclusa)
+
+Na VPS, depois do instalar-vps.sh:
+
+    sudo bash deploy/subir-whatsapp.sh 5531989513698
+
+Ele instala o Docker se faltar, gera senhas, sobe Postgres, Redis e Evolution API (v2.1.1), espera a API responder, cria a instância "ana", aponta o webhook para http://host.docker.internal:8787/webhook (evento MESSAGES_UPSERT), grava a chave no /opt/ana/.env, reinicia o serviço da Ana e salva o QR Code em deploy/qr.png para você escanear em Aparelhos conectados.
+
+Portas: a Evolution escuta só em 127.0.0.1:8080, nada exposto na internet. O webhook fala com a Ana pelo host, via host.docker.internal.
