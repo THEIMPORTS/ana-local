@@ -3,10 +3,21 @@ import http from 'node:http';
 import { resumo, precoConfigurado } from './custo.js';
 
 const PORTA = Number(process.env.PAINEL_PORTA || 8788);
+const PAPERCLIP = (process.env.PAPERCLIP_URL || '').replace(/\/$/, '');
+
+async function statusPaperclip() {
+  if (!PAPERCLIP) return { configurado: false };
+  try {
+    const r = await fetch(PAPERCLIP + '/api/health', { signal: AbortSignal.timeout(2500) });
+    return { configurado: true, online: r.ok, codigo: r.status, url: PAPERCLIP };
+  } catch (e) {
+    return { configurado: true, online: false, erro: e.message.slice(0, 60), url: PAPERCLIP };
+  }
+}
 const brl = v => 'R$ ' + Number(v || 0).toFixed(2).replace('.', ',');
 const n = v => Number(v || 0).toLocaleString('pt-BR');
 
-function html() {
+function html(pc = {}) {
   const r = resumo();
   const linhas = r.dias.map(d => `<tr><td>${d.dia}</td><td>${n(d.chamadas)}</td><td>${n(d.entrada)}</td><td>${n(d.saida)}</td><td>${brl(d.custo)}</td></tr>`).join('') || '<tr><td colspan="5" class="vazio">Nenhum uso registrado ainda</td></tr>';
   const modelos = r.porModelo.map(m => `<tr><td>${m.modelo}</td><td>${n(m.chamadas)}</td><td>${n(m.entrada + m.saida)}</td><td>${brl(m.custo)}</td></tr>`).join('') || '<tr><td colspan="4" class="vazio">Sem chamadas</td></tr>';
@@ -40,6 +51,14 @@ ${aviso}
   <div class="kpi"><span>Este mês</span><b>${brl(r.mes.custo)}</b><small>${n(r.mes.chamadas)} chamadas</small></div>
   <div class="kpi"><span>Total</span><b>${brl(r.total.custo)}</b><small>${n(r.total.entrada + r.total.saida)} tokens</small></div>
 </div>
+${pc.configurado ? `<div class="kpi" style="margin-bottom:24px;border-color:${pc.online?'#009CFE':'#E3A008'}">
+  <span>Paperclip (orquestrador de agentes)</span>
+  <b style="font-size:16px">${pc.online ? 'online' : 'sem resposta'}</b>
+  <small>${pc.url}${pc.erro ? ' · ' + pc.erro : ''}</small>
+</div>` : `<div class="kpi" style="margin-bottom:24px">
+  <span>Paperclip</span><b style="font-size:16px">não configurado</b>
+  <small>preencha PAPERCLIP_URL no .env para acompanhar aqui</small>
+</div>`}
 <h2>Últimos dias</h2>
 <table><tr><th>Dia</th><th>Chamadas</th><th>Tokens entrada</th><th>Tokens saída</th><th>Custo</th></tr>${linhas}</table>
 <h2>Por modelo</h2>
@@ -48,11 +67,12 @@ ${aviso}
 </div></body></html>`;
 }
 
-http.createServer((req, res) => {
+http.createServer(async (req, res) => {
   if (req.url === '/dados') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify(resumo()));
   }
   res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-  res.end(html());
+  const pc = await statusPaperclip();
+  res.end(html(pc));
 }).listen(PORTA, () => console.log('Painel de custo em http://localhost:' + PORTA));

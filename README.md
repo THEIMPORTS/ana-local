@@ -100,3 +100,17 @@ Na VPS, depois do instalar-vps.sh:
 Ele instala o Docker se faltar, gera senhas, sobe Postgres, Redis e Evolution API (v2.1.1), espera a API responder, cria a instância "ana", aponta o webhook para http://host.docker.internal:8787/webhook (evento MESSAGES_UPSERT), grava a chave no /opt/ana/.env, reinicia o serviço da Ana e salva o QR Code em deploy/qr.png para você escanear em Aparelhos conectados.
 
 Portas: a Evolution escuta só em 127.0.0.1:8080, nada exposto na internet. O webhook fala com a Ana pelo host, via host.docker.internal.
+
+## Paperclip: o time de agentes (opcional)
+
+O Paperclip e o orquestrador open source (MIT) que gerencia varios agentes como funcionarios: papel, metas, orcamento por agente e custo.
+
+    sudo bash deploy/subir-paperclip.sh
+
+Ele instala o Node 24, roda o onboarding, registra o servico e libera a porta 3100. A interface abre em http://IP-DA-VPS:3100, onde voce cria a empresa ANATECH MG e contrata a Ana como agente usando o adapter Codex com a mesma chave da OpenAI.
+
+Depois de subir, coloque no .env da Ana:
+
+    PAPERCLIP_URL=http://127.0.0.1:3100
+
+E o painel em 8788 passa a mostrar o status do Paperclip junto com o gasto.
