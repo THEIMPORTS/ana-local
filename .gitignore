@@ -1,0 +1,6 @@
+.env
+skills/
+memoria/conversas.jsonl
+node_modules/
+projetos/*
+!projetos/.gitkeep

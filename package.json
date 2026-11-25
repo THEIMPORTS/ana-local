@@ -1,0 +1,14 @@
+{
+  "name": "ana-local",
+  "version": "1.0.0",
+  "description": "Ana da ANATECH MG rodando no seu computador, com chave da OpenAI e WhatsApp",
+  "type": "module",
+  "bin": { "ana": "./src/index.js" },
+  "scripts": {
+    "chat": "node src/index.js",
+    "zap": "node src/whatsapp.js",
+    "testar": "node src/teste.js"
+  },
+  "engines": { "node": ">=20" },
+  "license": "MIT"
+}
