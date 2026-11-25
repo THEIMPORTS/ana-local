@@ -70,6 +70,21 @@ Baixe, extraia por cima da pasta e o índice de skills passa a mostrar as 185.
 ## O que é diferente do Base44
 Aqui você paga só o uso da OpenAI, não assinatura de plataforma. Em troca, você é o dono da máquina: atualiza, faz backup e responde por ela. Os conectores prontos do Base44 (Google, Slack, redes sociais) não vêm: viram scripts locais conforme a necessidade.
 
+
+## Instalar tudo de uma vez (recomendado)
+
+Na VPS Ubuntu, dentro da pasta:
+
+    sudo bash deploy/instalar-tudo.sh 5531989513698
+
+Em sequencia ele instala a Ana (motor, memoria, painel em 8788), o WhatsApp pela Evolution API (com QR salvo em /opt/ana/deploy/qr.png) e o Paperclip (em 3100). Cada etapa e idempotente: se uma falhar, rode de novo e ele retoma.
+
+Antes de instalar de verdade, de para conferir a maquina sem mexer em nada:
+
+    bash deploy/instalar-tudo.sh 5531989513698 --seco
+
+Para pular o Paperclip: `--sem-paperclip`.
+
 ## Rodar 24 horas na VPS (serviço que reinicia sozinho)
 
 Na VPS Ubuntu, dentro da pasta do projeto:
