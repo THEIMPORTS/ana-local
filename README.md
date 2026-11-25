@@ -69,3 +69,24 @@ Baixe, extraia por cima da pasta e o índice de skills passa a mostrar as 185.
 
 ## O que é diferente do Base44
 Aqui você paga só o uso da OpenAI, não assinatura de plataforma. Em troca, você é o dono da máquina: atualiza, faz backup e responde por ela. Os conectores prontos do Base44 (Google, Slack, redes sociais) não vêm: viram scripts locais conforme a necessidade.
+
+## Rodar 24 horas na VPS (serviço que reinicia sozinho)
+
+Na VPS Ubuntu, dentro da pasta do projeto:
+
+    sudo bash deploy/instalar-vps.sh
+
+Ele instala o Node 20, cria o usuário de serviço, copia tudo para /opt/ana, registra dois serviços systemd e já sobe:
+
+    ana-whatsapp  -> atende no WhatsApp e reinicia sozinho se cair
+    ana-painel    -> painel de custo em http://IP-DA-VPS:8788
+
+Comandos do dia a dia:
+
+    sudo systemctl status ana-whatsapp
+    sudo journalctl -u ana-whatsapp -f
+    sudo systemctl restart ana-whatsapp
+
+## Painel de custo
+
+Rode `node src/painel.js` (ou o serviço acima) e abra http://localhost:8788. Mostra gasto de hoje, do mês e do total, tokens de entrada e saída, e o detalhe por modelo e por dia. O valor em reais aparece quando você preenche PRECO_ENTRADA e PRECO_SAIDA no .env com o preço por 1 milhão de tokens da sua conta. Sem isso, ele conta tokens e deixa o custo em zero.

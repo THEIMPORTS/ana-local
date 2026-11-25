@@ -1,0 +1,19 @@
+[Unit]
+Description=Ana ANATECH MG - painel de custo
+After=network-online.target
+
+[Service]
+Type=simple
+User=ana
+WorkingDirectory=/opt/ana
+EnvironmentFile=/opt/ana/.env
+ExecStart=/usr/bin/node /opt/ana/src/painel.js
+Restart=always
+RestartSec=5
+StandardOutput=append:/var/log/ana/painel.log
+StandardError=append:/var/log/ana/painel.log
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

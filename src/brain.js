@@ -1,6 +1,7 @@
 // Cérebro da Ana: monta o contexto (identidade, regras, memórias, skills) e conversa com a OpenAI.
 // Sem dependências externas: usa fetch nativo do Node 20+.
 import fs from 'node:fs';
+import { registrarUso } from './custo.js';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buscarMemorias, salvarMemoria, registrarMensagem } from './memory.js';
@@ -65,6 +66,13 @@ async function chamar(mensagens, opcoes = {}) {
   gastoTotal.entrada += uso.prompt_tokens || 0;
   gastoTotal.saida += uso.completion_tokens || 0;
   gastoTotal.chamadas += 1;
+  registrarUso({
+    modelo: CONFIG.model || '',
+    entrada: uso.prompt_tokens || 0,
+    saida: uso.completion_tokens || 0,
+    canal: globalThis.__anaCanal || 'terminal',
+    etiqueta: globalThis.__anaEtiqueta || ''
+  });
   return d.choices?.[0]?.message || {};
 }
 
