@@ -55,3 +55,17 @@ Para economizar:
 
 ## O que não vem
 Ferramentas que dependem de serviço pago ou de canal específico: conectores OAuth (Google, Slack), publicação em redes sociais, workflows agendados do Base44 e as entidades do app. Essas viram scripts próprios ou automações locais, conforme a necessidade.
+
+## Pacote completo (com as 185 skills)
+O repositório traz o motor e a identidade. O pacote com todas as skills do laboratório está aqui:
+
+https://base44.app/api/apps/69b1d5cd9842092aa391f94e/files/mp/public/69b1d5cd9842092aa391f94e/9cd8f590fdc8affb43d92c0dcaf676ea_ana-local-completo.zip
+
+Baixe, extraia por cima da pasta e o índice de skills passa a mostrar as 185.
+
+## Onde rodar
+- **No seu PC**: melhor para trabalhar junto, com acesso aos seus arquivos.
+- **Numa VPS**: melhor para o WhatsApp, porque fica no ar 24h mesmo com o PC desligado. A mesma receita funciona: instalar Node 20, rodar `instalar.sh`, preencher o `.env` e deixar o `whatsapp.js` rodando com `pm2` ou `systemd`.
+
+## O que é diferente do Base44
+Aqui você paga só o uso da OpenAI, não assinatura de plataforma. Em troca, você é o dono da máquina: atualiza, faz backup e responde por ela. Os conectores prontos do Base44 (Google, Slack, redes sociais) não vêm: viram scripts locais conforme a necessidade.
