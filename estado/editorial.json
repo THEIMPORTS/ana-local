@@ -1,0 +1,25 @@
+{
+  "atualizado_em": "2026-11-26",
+  "origem_dos_dados": "entidade PostRedeSocial",
+  "publicados": 13,
+  "aguardando_aprovacao": 17,
+  "rascunhos": 4,
+  "agendados": 24,
+  "semana": [
+    {
+      "dia": "segunda",
+      "peca": "Pacote IA para clinicas (carrossel)",
+      "status": "aprovado"
+    },
+    {
+      "dia": "quarta",
+      "peca": "QuantBot v4 (reels)",
+      "status": "aprovado"
+    },
+    {
+      "dia": "sexta",
+      "peca": "Rifa da Anatech MG (post sem promessa de ganho)",
+      "status": "rascunho"
+    }
+  ]
+}

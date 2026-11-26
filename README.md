@@ -146,3 +146,18 @@ Rotinas prontas para rodar:
     node src/rotinas.js editorial   # pauta da semana
 
 Cada rotina le `estado/<sistema>.json`. Sem arquivo, ela diz "sem registro" em vez de inventar numero. Exemplos em `estado/exemplos/`.
+
+## Sistemas rodando com dado real
+
+`estado/*.json` foi preenchido com os dados reais das entidades (3 clientes, 4 vendas, 10 pedidos de rifa pagos, 59 posts).
+O briefing ja detectou uma divergencia real: a entidade Venda registra R$ 19,90 enquanto os PedidoRifa somam R$ 69,80.
+
+## Agente de trafego pago
+
+    node src/ads.js plano --produto "Pacote IA" --orcamento 40 --cpa 60
+    node src/ads.js analisar --csv estado/ads/exemplo-google.csv --plataforma google --cpa 60
+    node src/ads.js credenciais
+
+O plano sai em markdown e CSV pronto para subir. A analise aplica as regras (pausar quem gastou 1 CPA sem converter,
+escalar quem esta abaixo de 70% do alvo) e separa o que pode fazer sozinho do que espera aprovacao.
+Passo a passo completo do funcionario em estrutura/agentes/trafego-ads.md.

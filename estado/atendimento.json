@@ -1,0 +1,10 @@
+{
+  "atualizado_em": "2026-11-26",
+  "origem_dos_dados": "entidade PedidoRifa (10 pagos) e PostRedeSocial (59)",
+  "respondidas": 10,
+  "sem_resposta": 0,
+  "pedidos_rifa_pagos": 10,
+  "numeros_vendidos": 3435,
+  "receita_rifa": 69.8,
+  "observacao": "receita da rifa veio da entidade PedidoRifa; a entidade Venda registra valores menores para os mesmos pedidos"
+}

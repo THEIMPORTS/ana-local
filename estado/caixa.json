@@ -1,0 +1,58 @@
+{
+  "atualizado_em": "2026-11-26",
+  "fechado": true,
+  "entradas_lista": [
+    {
+      "data": "2026-10-07",
+      "origem": "rifa",
+      "valor": 13.0
+    },
+    {
+      "data": "2026-10-09",
+      "origem": "rifa",
+      "valor": 6.9
+    },
+    {
+      "data": "2026-11-09",
+      "origem": "rifa",
+      "valor": 13.0
+    },
+    {
+      "data": "2026-11-10",
+      "origem": "rifa",
+      "valor": 10.0
+    },
+    {
+      "data": "2026-11-17",
+      "origem": "rifa",
+      "valor": 16.9
+    },
+    {
+      "data": "2026-11-18",
+      "origem": "rifa",
+      "valor": 10.0
+    }
+  ],
+  "saidas_lista": [],
+  "vendas_lista": [
+    {
+      "data": "2026-10-07",
+      "valor": 5.0
+    },
+    {
+      "data": "2026-10-07",
+      "valor": 5.0
+    },
+    {
+      "data": "2026-10-07",
+      "valor": 3.0
+    },
+    {
+      "data": "2026-10-09",
+      "valor": 6.9
+    }
+  ],
+  "divergencias": [
+    "entidade Venda registra R$ 19,90 enquanto PedidoRifa soma R$ 69,80 nos mesmos pedidos"
+  ]
+}

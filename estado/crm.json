@@ -1,0 +1,14 @@
+{
+  "atualizado_em": "2026-11-26",
+  "origem_dos_dados": "entidades Cliente e Venda do Base44, leitura de 26/11/2026",
+  "leads_novos": 3,
+  "leads_por_origem": {
+    "simulador_ynova": 2,
+    "WhatsApp": 1
+  },
+  "parados_3d": 3,
+  "propostas_abertas": 0,
+  "vendas_pagas": 4,
+  "receita_paga": 19.9,
+  "observacao": "duas das tres vendas de rifa foram registradas com valor 5,00 e 3,00 em vez do valor do pedido; conferir antes de usar como receita"
+}
