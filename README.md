@@ -129,3 +129,20 @@ Depois de subir, coloque no .env da Ana:
     PAPERCLIP_URL=http://127.0.0.1:3100
 
 E o painel em 8788 passa a mostrar o status do Paperclip junto com o gasto.
+
+## Estrutura de oito sistemas (o MAPA)
+
+A pasta `estrutura/` traz o desenho operacional da ANATECH MG: oito sistemas, os funcionarios de IA de cada um, o passo a passo escrito e as regras que nao se quebram.
+
+    estrutura/MAPA.md                  visao geral e o que ja existe hoje
+    estrutura/sistemas/01..08-*.md     um arquivo por sistema
+    estrutura/segundo-cerebro.md       as tres camadas de memoria
+    estrutura/rotinas.md               horarios e o que o dono recebe
+
+Rotinas prontas para rodar:
+
+    node src/rotinas.js briefing    # o que andou, travou e espera decisao
+    node src/rotinas.js caixa       # confere caixa contra vendas
+    node src/rotinas.js editorial   # pauta da semana
+
+Cada rotina le `estado/<sistema>.json`. Sem arquivo, ela diz "sem registro" em vez de inventar numero. Exemplos em `estado/exemplos/`.
